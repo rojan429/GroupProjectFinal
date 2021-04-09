@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{/app.css}" />
+    <title>Board Page</title>
+</head>
+<body>
+<table border="1">
+<!--    private String BoardID;-->
+<!--    private String Location;-->
+<!--    private static int Space = 5;-->
+    <tr>
+        <th>Board ID</th>
+        <th>Location</th>
+        <th>Space</th>
+    </tr>
+    <tr th:each="board : ${allBoardDetails} ">
+        <td th:text="${board.getBoardRID()}"></td>
+        <td th:text="${board.getLocation()}"></td>
+        <td th:text="${board.getSpace()}"></td>
+    </tr>
+</table>
+<form th:action="@{/home}">
+    <button type="submit">back</button>
+</form>
+
+</body>
+</html>

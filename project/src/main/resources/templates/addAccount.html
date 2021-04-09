@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="app.css" />
+    <title>Add</title>
+</head>
+<body>
+<!--    private String accountID;-->
+<!--    private int phoneNumber;-->
+<!--    private String fstName;-->
+<!--    private String lstName;-->
+<!--    private String email;-->
+<!--    private String title;-->
+<form th:object="${account}"
+      th:action="@{/saveAccount}"
+      action="#"
+      method="POST">
+    <table>
+        <tr>
+            <td>Phone number</td>
+            <td><input th:field="${account.phoneNumber}" type = "text"></td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td><input th:field="${account.fstName}" type = "text"></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input th:field="${account.lstName}" type = "text"></td>
+        </tr>
+        <tr>
+            <td>Email Address</td>
+            <td><input th:field="${account.email}" type = "text"></td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td><input th:field="${account.title}" type = "text"></td>
+        </tr>
+    </table>
+    <input type="submit" value="add">
+</form>
+</body>
+</html>

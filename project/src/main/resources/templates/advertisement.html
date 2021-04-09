@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{/app.css}" />
+    <title>Advertisement Page</title>
+</head>
+<body>
+<form th:object="${message}"
+      th:action="@{/advertisement}"
+      action="#"
+      method="POST">
+    Search an Advertisement:
+    </br>
+    <input th:field="${message.text}" type = "text">
+    <input type="submit" value="search">
+</form>
+
+<table border="1">
+<!--    private String adID;-->
+<!--    private String description;-->
+<!--    private String poster;-->
+<!--    private String boarder;-->
+    <tr>
+        <th>Advertisement ID</th>
+        <th>Description</th>
+        <th>Poster</th>
+        <th>Board</th>
+        <th>Location</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="advertisement : ${advertisementDetails} ">
+        <td th:text="${advertisement.getAdID()}"></td>
+        <td th:text="${advertisement.getDescription()}"></td>
+        <td th:text="${advertisement.getPoster()}"></td>
+        <td th:text="${advertisement.getBoardRID()}"></td>
+        <td th:text="${advertisement.getLocation()}"></td>
+        <td><a th:href="@{editAdvertisement(advertisementId=${advertisement.adID})}">edit</a></td>
+        <td><a th:href="@{deleteAdvertisement(advertisementId=${advertisement.adID})}">delete</a></td>
+    </tr>
+</table>
+
+<form th:action="@{/addAdvertisement}">
+    <input type="submit" value="add">
+</form>
+
+<!--<form th:action="@{/editAdvertisement}">-->
+<!--    <input type="submit" value="edit">-->
+<!--</form>-->
+
+<form th:action="@{/home}">
+    <button type="submit">back</button>
+</form>
+
+<h2>All Advertisement</h2>
+
+<table border="1">
+    <!--    private String adID;-->
+    <!--    private String description;-->
+    <!--    private String poster;-->
+    <!--    private String boarder;-->
+    <tr>
+        <th>Advertisement ID</th>
+        <th>Description</th>
+        <th>Poster</th>
+        <th>Board</th>
+        <th>Location</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="advertisement : ${allAdvertisementDetails} ">
+        <td th:text="${advertisement.getAdID()}"></td>
+        <td th:text="${advertisement.getDescription()}"></td>
+        <td th:text="${advertisement.getPoster()}"></td>
+        <td th:text="${advertisement.getBoardRID()}"></td>
+        <td th:text="${advertisement.getLocation()}"></td>
+        <td><a th:href="@{editAdvertisement(advertisementId=${advertisement.adID})}">edit</a></td>
+        <td><a th:href="@{deleteAdvertisement(advertisementId=${advertisement.adID})}">delete</a></td>
+    </tr>
+</table>
+</body>
+</html>

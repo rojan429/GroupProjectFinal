@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/app.css}" />
+    <title>Advertisement Page</title>
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-dark bg-dark">
+        <form class="form-inline" th:action="@{/home}">
+            <button class="btn btn-outline-secondary" type="submit">back</button>
+        </form>
+
+        <form class="form-inline" th:object="${message}"
+              th:action="@{/advertisement}"
+              action="#"
+              method="POST">
+
+            <input th:field="${message.text}" class="form-control mr-sm-2" type="text" placeholder="Search by Ad ID" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" value="search" type="submit">Search</button>
+        </form>
+    </nav>
+</div>
+
+<div>
+    <form th:action="@{/addAdvertisement}">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="add">Add Advertisement</button>
+    </form>
+</div>
+
+<div>
+    <div th:each="advertisement : ${advertisementDetails} " class="card" style="width: 40rem;">
+        <h2>Advertisement Details</h2>
+        <div>
+            <p class="font-weight-bold">Advertisement ID: </p>
+            <p th:text="${advertisement.getAdID()}"></p>
+            <p class="font-weight-bold">Description: </p>
+            <p th:text="${advertisement.getDescription()}" ></p>
+            <p class="font-weight-bold">Poster: </p>
+            <p th:text="${advertisement.getPoster()}"></p>
+            <p class="font-weight-bold">Board: </p>
+            <p th:text="${advertisement.getBoardRID()}"></p>
+            <p class="font-weight-bold">Location: </p>
+            <p th:text="${advertisement.getLocation()}"></p>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div>
+<h2>All Advertisement</h2>
+</div>
+<div>
+    <div>
+<table class="table table-bordered table-striped">
+    <!--    private String adID;-->
+    <!--    private String description;-->
+    <!--    private String poster;-->
+    <!--    private String boarder;-->
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Advertisement ID</th>
+        <th scope="col">Description</th>
+        <th scope="col">Poster</th>
+        <th scope="col">Board</th>
+        <th scope="col">Location</th>
+        <th scope="col" colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="advertisement : ${allAdvertisementDetails} ">
+        <td th:text="${advertisement.getAdID()}"></td>
+        <td th:text="${advertisement.getDescription()}"></td>
+        <td th:text="${advertisement.getPoster()}"></td>
+        <td th:text="${advertisement.getBoardRID()}"></td>
+        <td th:text="${advertisement.getLocation()}"></td>
+        <td><a th:href="@{editAdvertisement(advertisementId=${advertisement.adID})}">edit</a></td>
+        <td><a th:href="@{deleteAdvertisement(advertisementId=${advertisement.adID})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{/app.css}" />
+    <title>Membership Page</title>
+</head>
+<body>
+<form th:object="${message}"
+      th:action="@{/member}"
+      action="#"
+      method="POST">
+    Search a Member:
+    </br>
+    <input th:field="${message.text}" type = "text">
+    <input type="submit" value="search">
+</form>
+
+<table border="1">
+    <!--    private String accountID;-->
+    <!--    private int phoneNumber;-->
+    <!--    private String fstName;-->
+    <!--    private String lstName;-->
+    <!--    private String email;-->
+    <!--    private String title;-->
+    <tr>
+        <th>Account id</th>
+        <th>Title</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Email Address</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="acc : ${accountDetails} ">
+        <td th:text="${acc.getAccountID()}"></td>
+        <td th:text="${acc.getTitle()}"></td>
+        <td th:text="${acc.getFstName()}"></td>
+        <td th:text="${acc.getLstName()}"></td>
+        <td th:text="${acc.getPhoneNumber()}"></td>
+        <td th:text="${acc.getEmail()}"></td>
+        <td><a th:href="@{edit(accountId=${acc.accountID})}">edit</a></td>
+        <td><a th:href="@{delete(accountId=${acc.accountID})}">delete</a></td>
+    </tr>
+</table>
+<form th:action="@{/addAccount}">
+    <input type="submit" value="add">
+</form>
+<form th:action="@{/home}">
+    <button type="submit">back</button>
+</form>
+
+<h2>All Members</h2>
+
+<table border="1">
+    <!--    private String accountID;-->
+    <!--    private int phoneNumber;-->
+    <!--    private String fstName;-->
+    <!--    private String lstName;-->
+    <!--    private String email;-->
+    <!--    private String title;-->
+    <tr>
+        <th>Account id</th>
+        <th>Title</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Email Address</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="account : ${allAccountDetails} ">
+        <td th:text="${account.getAccountID()}"></td>
+        <td th:text="${account.getTitle()}"></td>
+        <td th:text="${account.getFstName()}"></td>
+        <td th:text="${account.getLstName()}"></td>
+        <td th:text="${account.getPhoneNumber()}"></td>
+        <td th:text="${account.getEmail()}"></td>
+        <td><a th:href="@{edit(accountId=${account.accountID})}">edit</a></td>
+        <td><a th:href="@{delete(accountId=${account.accountID})}">delete</a></td>
+    </tr>
+</table>
+</body>
+</html>

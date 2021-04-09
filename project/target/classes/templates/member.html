@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/app.css}" />
+    <title>Membership Page</title>
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-dark bg-dark">
+        <form class="form-inline" th:action="@{/home}">
+            <button class="btn btn-outline-secondary" type="submit">back</button>
+        </form>
+
+        <form class="form-inline" th:object="${message}"
+              th:action="@{/member}"
+              action="#"
+              method="POST">
+
+            <input th:field="${message.text}" class="form-control mr-sm-2" type="text" placeholder="Search by Account ID" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" value="search" type="submit">Search</button>
+        </form>
+    </nav>
+</div>
+
+<div>
+    <form th:action="@{/addAccount}">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="add">Add Account</button>
+    </form>
+</div>
+
+<div>
+    <div th:each="acc : ${accountDetails} " class="card" style="width: 40rem;">
+        <h2>Account Details</h2>
+        <div>
+        <p class="font-weight-bold">Account ID: </p>
+          <p th:text="${acc.getAccountID()}"></p>
+        <p class="font-weight-bold">Title: </p>
+          <p th:text="${acc.getTitle()}" ></p>
+        <p class="font-weight-bold">First Name: </p>
+          <p th:text="${acc.getFstName()}"></p>
+        <p class="font-weight-bold">Last Name: </p>
+          <p th:text="${acc.getLstName()}"></p>
+        <p class="font-weight-bold">Phone number: </p>
+          <p th:text="${acc.getPhoneNumber()}"></p>
+        <p class="font-weight-bold">Email Address: </p>
+          <p th:text="${acc.getEmail()}"></p>
+        </div>
+  </div>
+</div>
+
+<div>
+<h2>All Members</h2>
+</div>
+<div>
+    <div>
+<table class="table table-bordered table-striped">
+    <!--    private String accountID;-->
+    <!--    private int phoneNumber;-->
+    <!--    private String fstName;-->
+    <!--    private String lstName;-->
+    <!--    private String email;-->
+    <!--    private String title;-->
+    <thead class="thead-dark">
+
+    <tr>
+        <th scope="col">Account ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Email Address</th>
+        <th scope="col" colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${allAccountDetails} ">
+        <td th:text="${account.getAccountID()}"></td>
+        <td th:text="${account.getTitle()}"></td>
+        <td th:text="${account.getFstName()}"></td>
+        <td th:text="${account.getLstName()}"></td>
+        <td th:text="${account.getPhoneNumber()}"></td>
+        <td th:text="${account.getEmail()}"></td>
+        <td><a th:href="@{edit(accountId=${account.accountID})}">edit</a></td>
+        <td><a th:href="@{delete(accountId=${account.accountID})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

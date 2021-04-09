@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{/app.css}" />
+    <title>Home</title>
+</head>
+<body>
+<h1>Advertisement Posting Management on Campus</h1>
+
+<form th:action="@{/member}">
+    <button type="submit">View Members</button>
+</form>
+
+<form th:action="@{/board}">
+    <button type="submit">View Board</button>
+</form>
+
+<form th:action="@{/advertisement}">
+    <button type="submit">View Advertisements</button>
+</form>
+
+
+</body>
+</html>
